@@ -31,11 +31,15 @@ El agente interactúa con los usuarios utilizando el contexto del manual de Swea
 
 ### 1. Escenario de Ventas (Prospecto pregunta por precios)
 * **Usuario:** *Hola, ¿cuánto cuesta la mensualidad?*
-* **Max (IA):** *¡Excelente que preguntes! En **Sweat Factory** tenemos opciones que se adaptan a ti: 1️⃣ **Plan Básico ($399 MXN/mes):** Acceso total a pesas y cardio. 2️⃣ **Plan Premium ($599 MXN/mes):** ¡Inscripción GRATIS, clases grupales ilimitadas y 1 pase de invitado al mes! 🚴‍♂️ 3️⃣ **Plan VIP Anual ($5,400 MXN):** ¡Te ahorras 2 meses enteros! ¿Cuál de estos planes se acomoda mejor a tus objetivos actuales? 💪 ¡Escribe /visita para agendar un recorrido gratis por nuestras instalaciones!*
+* **Max (IA):**¡Claro, campeón! 💪 Tenemos dos planes increíbles para ti:
+
+Plan Básico: Solo $399 al mes. Perfecto para quienes empiezan a sudar la camiseta. 🏋️‍♂️
+Plan Premium: Por $599 al mes, obtienes acceso a todo, ¡incluyendo clases especiales y más! 🔥
+¿Qué te parece? ¿Listo para unirte y transformar tu vida? 🚀
 
 ### 2. Escenario de Reglamento (Socio actual)
 * **Usuario:** *¿Se puede entrenar en sandalias?*
-* **Max (IA):** *¡Hola! Por tu propia seguridad y para evitar lesiones en la zona de pesas, es estrictamente obligatorio entrenar con ropa deportiva y calzado cerrado adecuado (tenis limpios) 👟 No se permite el acceso en sandalias, calzado de calle o sin playera. ¡Cuidemos tu cuerpo y el de todos! 🔥*
+* **Max (IA):** *¡Ups, eso no es seguro! 🚫 En Sweat Factory, recomendamos usar calzado deportivo adecuado para entrenar. 🏋️‍♂️ Esto es importante para proteger tus pies y darte el soporte necesario durante los ejercicios. ¡Queremos que te pongas en forma, pero con seguridad! 🔥 ¿Listo para darlo todo? 👟💪*
 
 ---
 
