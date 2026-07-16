@@ -30,11 +30,6 @@ El agente está diseñado para ejecutarse directamente sobre el entorno de ejecu
 │
 └──► Procesa Consulta ───► [ OpenAI API (GPT-4o) ]
 
-### Componentes Clave:
-* **OCI Compute Instance (Windows Server):** Una instancia de cómputo flexible ejecutando Windows Server. Puede operar eficientemente con recursos mínimos (1 o 2 OCPUs) asignados en la plataforma de Oracle Cloud.
-* **Telegram Bot API:** El canal oficial de comunicación. Los mensajes de los usuarios son procesados por el script mediante la librería `pyTelegramBotAPI` o `python-telegram-bot`.
-* **Windows Task Scheduler (Programador de Tareas):** Configuramos un disparador para que el script de Python se inicie automáticamente cada vez que el servidor Windows se encienda o se reinicie por mantenimiento, garantizando disponibilidad 24/7.
-
 ---
 
 ## 📁 ¿Qué contiene este Repositorio?
