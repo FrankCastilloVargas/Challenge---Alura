@@ -5,7 +5,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 
 # 1. Configuración de la página web
-set_page_config(page_title="Sweat Factory AI Agent", page_icon="🏋️‍♂️", layout="centered")
+st.set_page_config(page_title="Sweat Factory AI Agent", page_icon="🏋️‍♂️", layout="centered")
 title("🏋️‍♂️ Max - Sweat Factory AI")
 subheader("Asistente Virtual de Ventas y Atención al Cliente")
 
