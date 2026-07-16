@@ -1,6 +1,6 @@
-# 🏋️‍♂️ Sweat Factory AI Agent MAX — Atención al Cliente y Ventas
+# 🏋️‍♂️ Sweat Factory AI Agent — Atención al Cliente y Ventas (Pure Python Edition)
 
-¡Bienvenido al repositorio oficial del Agente de Inteligencia Artificial de **Sweat Factory**! 🚀 Este proyecto combina tecnología de lenguaje natural (IA) con estrategias de conversión para ofrecer atención al cliente 24/7 y potenciar las ventas de nuestra comunidad fitness.
+¡Bienvenido al repositorio oficial del Agente de Inteligencia Artificial de **Sweat Factory**! 🚀 Este proyecto combina la potencia de los modelos de lenguaje natural (LLMs) con una arquitectura ligera basada exclusivamente en **Python**, garantizando un despliegue rápido, eficiente y de alta disponibilidad.
 
 ---
 
@@ -13,41 +13,51 @@ El agente tiene dos misiones principales:
 
 ---
 
+## 🏗️ Arquitectura del Sistema (Despliegue en OCI Compute con Python)
+
+El agente está diseñado para ejecutarse directamente sobre el entorno de ejecución de Python en una máquina virtual de **Oracle Cloud Infrastructure (OCI)**
+
+[ Usuario (Telegram App) ]
+│
+▼ (Servidores de Telegram)
+▲
+│  (Long Polling Seguro / Puerto Abierto de Salida)
+[ OCI Compute Instance (Windows Server) ] ◄── Monitoreado por ──► [ Windows Task Scheduler ]
+│
+└── (Entorno Virtual Python)
+│
+├──► Lee Configuración ──► [ agent-config/ & knowledge-base/ ]
+│
+└──► Procesa Consulta ───► [ OpenAI API (GPT-4o) ]
+
+### Componentes Clave:
+* **OCI Compute Instance (Windows Server):** Una instancia de cómputo flexible ejecutando Windows Server. Puede operar eficientemente con recursos mínimos (1 o 2 OCPUs) asignados en la plataforma de Oracle Cloud.
+* **Telegram Bot API:** El canal oficial de comunicación. Los mensajes de los usuarios son procesados por el script mediante la librería `pyTelegramBotAPI` o `python-telegram-bot`.
+* **Windows Task Scheduler (Programador de Tareas):** Configuramos un disparador para que el script de Python se inicie automáticamente cada vez que el servidor Windows se encienda o se reinicie por mantenimiento, garantizando disponibilidad 24/7.
+
+---
+
 ## 📁 ¿Qué contiene este Repositorio?
 
-Este espacio está organizado de manera limpia y modular para facilitar cualquier actualización técnica o de contenido:
+* **`agent-config/`**
+    * `sweat_factory_agent.json`: Archivo maestro con el flujo conversacional estructurado, nodos de decisión e intenciones predefinidas listo para ser importado.
+    * `system_prompt.txt`: Las instrucciones de personalidad, tono enérgico/motivador y directrices de venta que moldean el comportamiento de Max.
+* **`Base-Conocimiento/`**
+    * `Manual_Operativo_Sweat_Factory.pdf`: El cerebro de datos del bot (Reglamento, precios, políticas de reembolso y guías de seguridad).
+* **`app.py`**: El script principal de Python que conecta el API de Telegram con el cerebro de OpenAI.
+* **`requirements.txt`**: Lista de librerías de Python necesarias (ej: `telebot`, `openai`, `python-dotenv`).
+* **`README.md`**: Esta guía de documentación.
 
-*   **`Agent-Config/`**
-    *   `sweat_factory_agent.json`: Archivo maestro con el flujo conversacional estructurado, nodos de decisión y conexiones API listo para ser importado en la plataforma de desarrollo.
-    *   `system_prompt.txt`: Las instrucciones de personalidad, tono enérgico/motivador y directrices de venta que moldean el comportamiento del asistente.
-*   **`Base-Conocimiento/`**
-    *   `Manual_Operativo_Sweat_Factory.pdf`: El cerebro de datos del bot. Contiene el reglamento oficial, políticas de reembolso detalladas, guías de seguridad para el uso de equipos y respuestas a preguntas frecuentes (FAQs).
-*   **`README.md`**: Esta guía de bienvenida y documentación general del proyecto.
+---## 💬 Ejemplos de Preguntas y Respuestas en Telegram
 
----
+El agente interactúa con los usuarios utilizando el contexto del manual de Sweat Factory de la siguiente manera:
 
-## 🔥 ¡Únete a la Comunidad Sweat Factory! (Promoción del Gimnasio)
+### 1. Escenario de Ventas (Prospecto pregunta por precios)
+* **Usuario:** *Hola, ¿cuánto cuesta la mensualidad?*
+* **Max (IA):** *¡Excelente que preguntes! En **Sweat Factory** tenemos opciones que se adaptan a ti: 1️⃣ **Plan Básico ($399 MXN/mes):** Acceso total a pesas y cardio. 2️⃣ **Plan Premium ($599 MXN/mes):** ¡Inscripción GRATIS, clases grupales ilimitadas y 1 pase de invitado al mes! 🚴‍♂️ 3️⃣ **Plan VIP Anual ($5,400 MXN):** ¡Te ahorras 2 meses enteros! ¿Cuál de estos planes se acomoda mejor a tus objetivos actuales? 💪 ¡Escribe /visita para agendar un recorrido gratis por nuestras instalaciones!*
 
-En **Sweat Factory** no solo construimos cuerpos, ¡forjamos disciplina y comunidad! Si estás listo para llevar tu entrenamiento al siguiente nivel, tenemos el plan perfecto para ti.
-
-### 📋 Nuestros Planes Mensuales
-*   **Plan Básico (\$399 MXN):** Acceso total a zonas de peso libre, peso integrado y nuestra moderna área de cardio. *(Inscripción: \$250 MXN)*.
-*   **Plan Premium (\$599 MXN):** Todo lo del Plan Básico **+** Clases grupales ilimitadas (Spinning, Yoga, Zumba) **+** ¡1 pase de invitado gratis al mes para entrenar con quien quieras! *(Inscripción: GRATIS)*.
-*   **Plan VIP Anual (\$5,400 MXN):** El pase definitivo. Todos los beneficios Premium **+** Evaluación nutricional mensual incluida. Pago único anual donde **¡te ahorras 2 meses completos de mensualidad!** *(Inscripción: GRATIS)*.
-
-### 🤝 Programa de Referidos: "Entrena con Amigos"
-¡Entrenar acompañado paga bien! Si ya eres socio de Sweat Factory, invita a tus amigos:
-*   Por **1 amigo** inscrito en el mes: Te llevas **50% de descuento** en tu próxima mensualidad.
-*   Por **2 amigos** inscritos en el mismo mes: ¡Tu siguiente mes es **100% GRATIS**!
-*   **¿Y tu amigo?** Al ingresar recomendado por ti, recibe de inmediato un **50% de descuento en su inscripción**.
+### 2. Escenario de Reglamento (Socio actual)
+* **Usuario:** *¿Se puede entrenar en sandalias?*
+* **Max (IA):** *¡Hola! Por tu propia seguridad y para evitar lesiones en la zona de pesas, es estrictamente obligatorio entrenar con ropa deportiva y calzado cerrado adecuado (tenis limpios) 👟 No se permite el acceso en sandalias, calzado de calle o sin playera. ¡Cuidemos tu cuerpo y el de todos! 🔥*
 
 ---
-
-## 🚀 Cómo Replicar o Desplegar este Agente
-1. Descarga el archivo `.json` ubicado en la carpeta `agent-config/`.
-2. Impórtalo en tu plataforma de automatización.
-3. Sube el archivo `Manual_Operativo_Sweat_Factory.pdf` de la carpeta `knowledge-base/` como la fuente primaria de información del bot.
-4. Conecta tu API Key de OpenAI, vincula tu canal de salida (WhatsApp/Instagram/Telegram) y ¡deja que la IA trabaje por ti!
-
----
-*Sweat Factory — Construyendo tu mejor versión, una repetición a la vez.* 💪🔥
