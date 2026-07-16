@@ -59,4 +59,4 @@ Si has clonado este repositorio y deseas correr tu propia versión en los servid
    TELEGRAM_BOT_TOKEN = "tu_token_de_botfather"
    OPENAI_API_KEY = "sk-proj-tu_clave_real_de_openai"
 
-   ---
+---
