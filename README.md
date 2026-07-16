@@ -1,6 +1,6 @@
 # 🏋️‍♂️ Sweat Factory AI Agent — Atención al Cliente y Ventas
 
-¡Bienvenido al repositorio oficial del Agente de Inteligencia Artificial de **Sweat Factory**! 🚀 Este proyecto combina tecnología de lenguaje natural (IA) con estrategias de conversión para ofrecer atención al cliente 24/7 y potenciar las ventas de nuestra comunidad fitness.
+¡Bienvenido al repositorio oficial del Agente de Inteligencia Artificial de **Sweat Factory, MAX**! 🚀 Este proyecto combina tecnología de lenguaje natural (IA) con estrategias de conversión para ofrecer atención al cliente 24/7 y potenciar las ventas de nuestra comunidad fitness.
 
 ---
 
