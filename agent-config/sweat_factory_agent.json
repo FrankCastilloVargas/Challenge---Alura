@@ -1,0 +1,37 @@
+{
+    "metadata": {
+        "agent_name": "Max - Sweat Factory Closer",
+        "version": "1.0.0",
+        "description": "Agente de atención al cliente y ventas para Sweat Factory"
+    },
+    "system_instructions": "system_prompt.txt",
+    "knowledge_base_linked": "Manual_Operativo_Sweat_Factory.pdf",
+    "intent_flows": {
+        "saludo": {
+            "utterances": [
+                "hola",
+                "buenos dias",
+                "buenas tardes",
+                "info"
+            ],
+            "response": "¡Hola! Te saluda Max de **Sweat Factory** 🏋️‍♂️🔥 ¿Listo para llevar tu entrenamiento al siguiente nivel hoy? Cuéntame, ¿ya eres miembro de nuestra comunidad o te gustaría conocer nuestros planes?"
+        },
+        "preguntar_precios": {
+            "utterances": [
+                "precios",
+                "planes",
+                "cuanto cuesta",
+                "costos"
+            ],
+            "response": "¡Excelente que preguntes! En **Sweat Factory** tenemos opciones que se adaptan a ti: \n\n1️⃣ **Plan Básico (\\$399 MXN/mes):** Acceso total a pesas y cardio.\n2️⃣ **Plan Premium (\\$599 MXN/mes):** ¡Inscripción GRATIS, clases grupales ilimitadas y 1 pase de invitado al mes! 🚴‍♂️\n3️⃣ **Plan VIP Anual (\\$5,400 MXN):** ¡Te ahorras 2 meses enteros!\n\n¿Cuál de estos planes se acomoda mejor a tus objetivos actuales? 💪"
+        },
+        "preguntar_horarios": {
+            "utterances": [
+                "horarios",
+                "a que hora abren",
+                "abren los domingos"
+            ],
+            "response": "¡Aquí entrenamos duro toda la semana! ⚡ Nuestros horarios son:\n- Lunes a Viernes: 5:00 am a 11:00 pm\n- Sábados: 7:00 am a 6:00 pm\n- Domingos: 8:00 am a 4:00 pm\n\n¿A qué hora te queda mejor entrenar? Recuerda que podemos agendarte una visita guiada gratis de una vez. 👟"
+        }
+    }
+}
