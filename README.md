@@ -13,25 +13,6 @@ El agente tiene dos misiones principales:
 
 ---
 
-## 🏗️ Arquitectura del Sistema (Despliegue en OCI Compute con Python)
-
-El agente está diseñado para ejecutarse directamente sobre el entorno de ejecución de Python en una máquina virtual de **Oracle Cloud Infrastructure (OCI)**
-
-[ Usuario (Telegram App) ]
-│
-▼ (Servidores de Telegram)
-▲
-│  (Long Polling Seguro / Puerto Abierto de Salida)
-[ OCI Compute Instance (Windows Server) ] ◄── Monitoreado por ──► [ Windows Task Scheduler ]
-│
-└── (Entorno Virtual Python)
-│
-├──► Lee Configuración ──► [ agent-config/ & knowledge-base/ ]
-│
-└──► Procesa Consulta ───► [ OpenAI API (GPT-4o) ]
-
----
-
 ## 📁 ¿Qué contiene este Repositorio?
 
 * **`agent-config/`**
@@ -42,8 +23,9 @@ El agente está diseñado para ejecutarse directamente sobre el entorno de ejecu
 * **`app.py`**: El script principal de Python que conecta el API de Telegram con el cerebro de OpenAI.
 * **`requirements.txt`**: Lista de librerías de Python necesarias (ej: `telebot`, `openai`, `python-dotenv`).
 * **`README.md`**: Esta guía de documentación.
+* **`MAX Bot Evidencia I y II.jpg`**: Imagenes que demuestran que el Agente es funcional.
 
----## 💬 Ejemplos de Preguntas y Respuestas en Telegram
+---## 💬 Ejemplos de Preguntas y Respuestas
 
 El agente interactúa con los usuarios utilizando el contexto del manual de Sweat Factory de la siguiente manera:
 
@@ -59,7 +41,7 @@ El agente interactúa con los usuarios utilizando el contexto del manual de Swea
 
 ## 🌐 Cómo usar y probar el Agente de IA en la Web (Streamlit)
 
-Este proyecto cuenta con una interfaz web interactiva tipo "ChatGPT" desarrollada en **Streamlit**. Esto permite que cualquier usuario o miembro del equipo pruebe las respuestas del agente **Max** directamente desde su navegador web, sin necesidad de usar Telegram.
+Este proyecto cuenta con una interfaz web interactiva tipo "ChatGPT" desarrollada en **Streamlit**. Esto permite que cualquier usuario o miembro del equipo pruebe las respuestas del agente **Max** directamente desde su navegador web.
 
 Sigue estos pasos para interactuar con el bot en la plataforma:
 
