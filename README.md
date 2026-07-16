@@ -60,3 +60,39 @@ Si has clonado este repositorio y deseas correr tu propia versión en los servid
    OPENAI_API_KEY = "sk-proj-tu_clave_real_de_openai"
 
 ---
+
+## 🏗️ Arquitectura del Sistema y Tecnologías Utilizadas
+
+El agente de IA de **Sweat Factory** está diseñado bajo una arquitectura desacoplada, ligera y modular que prioriza la velocidad de respuesta, el control estricto de los datos del negocio y la flexibilidad de despliegue (código puro o automatización visual), evitando por completo la sobrecarga de contenedores como Docker.
+
+### 📊 Diagrama de Flujo de Datos
+
+```text
+[ Cliente (Telegram / Web) ] 
+             │
+             ▼
+   [ Interfaz / Trigger ] ───► (Streamlit Web App / pyTelegramBotAPI)
+             │
+             ▼
+     [ Capa de Control ] ───► Inyección Local del 'system_prompt.txt' (Reglas del Gym)
+             │
+             ▼
+  [ Cerebro de IA (API) ] ───► OpenAI GPT-4o (Procesamiento de Lenguaje Natural)
+             │
+             ▼
+[ Respuesta Automatizada ] ───► Retorno con formato Markdown y Emojis al Cliente
+
+---
+
+## 🛠️Tecnologías Utilizadas
+
+Este proyecto fue desarrollado utilizando un conjunto de tecnologías que permiten procesar la inteligencia artificial de forma rápida y segura, evitando la sobrecarga de contenedores pesados.
+
+### 🐍 Tech Stack
+* ![Python]**Python 3.11:**
+* ![OpenAI] Google Gemini API
+* ![Telegram]
+* ![Streamlit]
+* ![GitHub]
+
+---
