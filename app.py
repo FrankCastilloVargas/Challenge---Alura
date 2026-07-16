@@ -65,7 +65,7 @@ if user_input := st.chat_input("Escribe tu pregunta aquí... (ej. ¿Cuánto cues
                 response = openai_client.chat.completions.create(
                     model="gpt-4o",
                     messages=contexto,
-                    temperature=0.7
+                    temperature=0.5
                 )
                 respuesta_max = response.choices[0].message.content
                 st.markdown(respuesta_max)
