@@ -1,72 +1,76 @@
 import os
+import streamlit as str
 import telebot
 from openai import OpenAI
 from dotenv import load_dotenv
 
-# 1. Cargar las variables de entorno desde el archivo .env
+# 1. Configuración de la página web
+st.set_page_config(page_title="Sweat Factory AI Agent", page_icon="🏋️‍♂️", layout="centered")
+st.title("🏋️‍♂️ Max - Sweat Factory AI")
+st.subheader("Asistente Virtual de Ventas y Atención al Cliente")
+
+# 2. Cargar credenciales de forma segura (Local o Streamlit Cloud)
 load_dotenv()
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN") or st.secrets.get("TELEGRAM_BOT_TOKEN")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
 
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-
-# Validar que las credenciales existan antes de arrancar
 if not TELEGRAM_BOT_TOKEN or not OPENAI_API_KEY:
-    print("❌ ERROR: Falta configurar TELEGRAM_BOT_TOKEN o OPENAI_API_KEY en el archivo .env")
-    exit(1)
+    st.error("❌ Error: Faltan configurar las credenciales en las variables de entorno o Secrets.")
+    st.stop()
 
-# 2. Inicializar los clientes de Telegram y OpenAI
-bot = telebot.TeleBot(TELEGRAM_BOT_TOKEN)
+# 3. Inicializar clientes
 openai_client = OpenAI(api_key=OPENAI_API_KEY)
 
-# 3. Cargar las instrucciones de personalidad (System Prompt) de Max
-PROMPT_PATH = os.path.join("agent-config", "system_prompt.txt")
-
+# Intentar inicializar Telegram en segundo plano (Opcional si solo quieres la web)
 try:
+    bot = telebot.TeleBot(TELEGRAM_BOT_TOKEN)
+except Exception as e:
+    st.warning(f"⚠️ No se pudo enlazar Telegram: {e}")
+
+# 4. Cargar instrucciones de Max
+PROMPT_PATH = os.path.join("agent-config", "system_prompt.txt")
+if os.path.exists(PROMPT_PATH):
     with open(PROMPT_PATH, "r", encoding="utf-8") as file:
         system_prompt = file.read()
-    print("💪 Base de conocimientos e instrucciones de Max cargadas correctamente.")
-except FileNotFoundError:
-    # Respaldo por si no encuentra el archivo en la carpeta estructurada
-    system_prompt = "Eres Max, el entrenador virtual de Sweat Factory. Usa emojis (🏋️‍♂️, 🔥), sé enérgico, motivador y ayuda a vender membresías."
-    print("⚠️ ADVERTENCIA: No se encontró 'agent-config/system_prompt.txt'. Usando prompt de respaldo.")
+else:
+    system_prompt = "Eres Max, asistente de Sweat Factory. Usa emojis (🏋️‍♂️, 🔥). Precios: Básico $399, Premium $599. Sé enérgico y vende."
 
-print("🚀 El agente de IA de Sweat Factory está encendido y escuchando en Telegram...")
+# 5. Historial de chat en la interfaz Web (Memoria de Streamlit)
+if "messages" not in st.session_state:
+    st.session_state.messages = [
+        {"role": "assistant", "content": "¡Hola! 🔥 Soy Max, el entrenador virtual de Sweat Factory. ¿Listo para construir tu mejor versión? Pregúntame sobre nuestros planes, horarios o reglamentos. 🏋️‍♂️"}
+    ]
 
-# 4. Capturar y responder los mensajes de Telegram
-@bot.message_handler(func=lambda message: True)
-def responder_cliente(message):
-    chat_id = message.chat.id
-    user_text = message.text
-    
-    # Mostrar en la consola del servidor lo que escribe el usuario para monitoreo
-    print(f"📩 Mensaje recibido de [{message.from_user.first_name}]: {user_text}")
+# Mostrar los mensajes anteriores en la pantalla
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
-    try:
-        # Indicar al usuario en Telegram que Max está "escribiendo..."
-        bot.send_chat_action(chat_id, 'typing')
+# 6. Capturar la interacción del usuario en la web
+if user_input := st.chat_input("Escribe tu pregunta aquí... (ej. ¿Cuánto cuesta la mensualidad?)"):
+    # Mostrar el mensaje del usuario en la web
+    st.session_state.messages.append({"role": "user", "content": user_input})
+    with st.chat_message("user"):
+        st.markdown(user_input)
 
-        # Consultar al cerebro de OpenAI (GPT-4o) mandando las reglas del gimnasio
-        response = openai_client.chat.completions.create(
-            model="gpt-4o",
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_text}
-            ],
-            temperature=0.7 # Balance ideal entre creatividad de ventas y precisión de reglas
-        )
-        
-        # Extraer la respuesta generada por la IA
-        respuesta_max = response.choices[0].message.content
+    # Generar la respuesta de Max con OpenAI
+    with st.chat_message("assistant"):
+        with st.spinner("Max está pensando... ⚡"):
+            try:
+                # Construir el contexto histórico completo para la IA
+                contexto = [{"role": "system", "content": system_prompt}]
+                for m in st.session_state.messages:
+                    contexto.append({"role": m["role"], "content": m["content"]})
 
-        # Enviar la respuesta de vuelta al cliente en Telegram
-        bot.send_message(chat_id, respuesta_max, parse_mode="Markdown")
-        print(f"📤 Respuesta de Max: {respuesta_max[:50]}...")
-
-    except Exception as e:
-        error_msg = "❌ Hola. Mi circuito de entrenamiento sufrió un calambre temporal. Por favor, intenta de nuevo en unos segundos. 🔥"
-        bot.send_message(chat_id, error_msg)
-        print(f"💥 Ocurrió un error al procesar el mensaje: {e}")
-
-# 5. Mantener el bot corriendo indefinidamente (Long Polling)
-if __name__ == "__main__":
-    bot.infinity_polling()
+                response = openai_client.chat.completions.create(
+                    model="gpt-4o",
+                    messages=contexto,
+                    temperature=0.7
+                )
+                respuesta_max = response.choices[0].message.content
+                st.markdown(respuesta_max)
+                
+                # Guardar en el historial interno
+                st.session_state.messages.append({"role": "assistant", "content": respuesta_max})
+            except Exception as e:
+                st.error(f"Hubo un calambre en mis circuitos: {e}")
