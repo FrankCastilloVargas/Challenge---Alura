@@ -17,10 +17,10 @@ El agente tiene dos misiones principales:
 
 Este espacio está organizado de manera limpia y modular para facilitar cualquier actualización técnica o de contenido:
 
-*   **`agent-config/`**
+*   **`Agent-Config/`**
     *   `sweat_factory_agent.json`: Archivo maestro con el flujo conversacional estructurado, nodos de decisión y conexiones API listo para ser importado en la plataforma de desarrollo.
     *   `system_prompt.txt`: Las instrucciones de personalidad, tono enérgico/motivador y directrices de venta que moldean el comportamiento del asistente.
-*   **`knowledge-base/`**
+*   **`Base-Conocimiento/`**
     *   `Manual_Operativo_Sweat_Factory.pdf`: El cerebro de datos del bot. Contiene el reglamento oficial, políticas de reembolso detalladas, guías de seguridad para el uso de equipos y respuestas a preguntas frecuentes (FAQs).
 *   **`README.md`**: Esta guía de bienvenida y documentación general del proyecto.
 
