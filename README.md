@@ -57,4 +57,24 @@ El agente interactúa con los usuarios utilizando el contexto del manual de Swea
 
 ---
 
+## 🌐 Cómo usar y probar el Agente de IA en la Web (Streamlit)
 
+Este proyecto cuenta con una interfaz web interactiva tipo "ChatGPT" desarrollada en **Streamlit**. Esto permite que cualquier usuario o miembro del equipo pruebe las respuestas del agente **Max** directamente desde su navegador web, sin necesidad de usar Telegram.
+
+Sigue estos pasos para interactuar con el bot en la plataforma:
+
+### 🛠️ Paso 1: Acceder a la Aplicación Web
+1. Haz clic en el enlace de la aplicación desplegada en Streamlit Cloud: 
+   👉 *(https://challenge---alura-g6xu6e5cxmtttpxmuwymhb.streamlit.app/)*
+2. Al abrir la página, verás el título **"🏋️‍♂️ Max - Sweat Factory AI"** y un mensaje de bienvenida en la pantalla de chat.
+
+### 🔑 Paso 2: Configurar tus propias Credenciales (Si usas un fork o clon propio)
+Si has clonado este repositorio y deseas correr tu propia versión en los servidores de Streamlit, debes inyectar tus llaves secretas de forma segura:
+1. En tu panel de control de **Streamlit Cloud**, ve a la configuración de tu App (`Settings`).
+2. Entra a la sección de **Secrets** (Llaves secretas).
+3. Pega tus credenciales respetando el siguiente formato:
+   ```toml
+   TELEGRAM_BOT_TOKEN = "tu_token_de_botfather"
+   OPENAI_API_KEY = "sk-proj-tu_clave_real_de_openai"
+
+   ---
