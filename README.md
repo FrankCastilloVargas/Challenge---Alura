@@ -47,7 +47,7 @@ En **Sweat Factory** no solo construimos cuerpos, ¡forjamos disciplina y comuni
 1. Descarga el archivo `.json` ubicado en la carpeta `agent-config/`.
 2. Impórtalo en tu plataforma de automatización.
 3. Sube el archivo `Manual_Operativo_Sweat_Factory.pdf` de la carpeta `knowledge-base/` como la fuente primaria de información del bot.
-4. Conecta tu API Key de OpenAI (GPT-4o recomendado), vincula tu canal de salida (WhatsApp/Instagram) y ¡deja que la IA trabaje por ti!
+4. Conecta tu API Key de OpenAI, vincula tu canal de salida (WhatsApp/Instagram/Telegram) y ¡deja que la IA trabaje por ti!
 
 ---
 *Sweat Factory — Construyendo tu mejor versión, una repetición a la vez.* 💪🔥
